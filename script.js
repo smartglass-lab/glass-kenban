@@ -180,7 +180,7 @@
     ap = null;
     mode = 'clearwait';
     [0, 4, 7, 12].forEach(function (d, k) { playNote(72 + d, 0.35 + k * 0.11); });
-    clearTimer = setTimeout(function () { openClear(secs, newBest); }, 1100);
+    clearTimer = setTimeout(function () { openClear(secs, newBest); }, AUTO ? 750 : 1100);
   }
   function fmtTime(sec) { var m = Math.floor(sec / 60), s = sec % 60; return m + ':' + (s < 10 ? '0' : '') + s; }
 
@@ -394,7 +394,7 @@
       return;
     }
     if (!AUTO || mode !== 'play' || !s) { ap = null; return; }
-    if (!ap) ap = { tapAt: t + 900, stepAt: t + 450, stepMs: 110 };
+    if (!ap) ap = { tapAt: t + 700, stepAt: t + 400, stepMs: 110 };
     var tgt = targetIdx();
     if (tgt < 0) return;
     if (cur !== tgt && t >= ap.stepAt) { cur += cur < tgt ? 1 : -1; ap.stepAt = t + ap.stepMs; }
