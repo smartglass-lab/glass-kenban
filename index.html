@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=600, height=600, initial-scale=1.0, user-scalable=no">
+  <meta name="description" content="Meta Ray-Ban Display 用の鍵盤楽器。2オクターブの鍵盤をD-padでえらんでタップで鳴らす。音色はピアノ風・オルゴール・オルガン（端末内で合成）。次にひく鍵が光る「おてほん」で童謡や名曲をひける。依存ライブラリなし・オフライン動作。">
+  <meta name="mrbd-web-app-capable" content="yes">
+  <title>グラス鍵盤 — Glass Kenban</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <div id="hud">
+      <span id="hud-left">🎹 グラス鍵盤</span>
+      <span id="hud-right"></span>
+    </div>
+
+    <!-- タイトル -->
+    <div id="title" class="screen">
+      <div class="panel">
+        <div class="logo">🎹</div>
+        <div class="t-title">グラス鍵盤</div>
+        <div class="t-sub">メガネの中で、ひく・ならう。</div>
+        <div class="menu-list" id="title-list"></div>
+      </div>
+    </div>
+
+    <!-- 鍵盤 -->
+    <div id="play" class="screen hidden">
+      <canvas id="cv" width="600" height="600"></canvas>
+      <div id="hint"></div>
+      <div id="clear" class="overlay hidden">
+        <div class="panel cpt">
+          <div class="logo small">🎉</div>
+          <div class="t-title small">できた！</div>
+          <div class="t-sub" id="clear-sub"></div>
+          <div class="menu-list compact" id="clear-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- メニュー -->
+    <div id="menu" class="screen hidden">
+      <div class="panel cpt">
+        <div class="t-title small">メニュー</div>
+        <div class="t-sub" id="menu-sub"></div>
+        <div class="menu-list compact" id="menu-list"></div>
+      </div>
+    </div>
+
+    <!-- おてほん曲 -->
+    <div id="songs" class="screen hidden">
+      <div class="panel cpt">
+        <div class="t-title small">おてほん曲</div>
+        <div class="t-sub">次にひく鍵が金色に光ります</div>
+        <div class="menu-list compact" id="songs-list"></div>
+      </div>
+    </div>
+
+    <!-- つかいかた -->
+    <div id="howto" class="screen hidden">
+      <div class="panel wide">
+        <div class="t-title small">つかいかた</div>
+        <ul class="howto">
+          <li><b class="key">←→</b> で鍵をえらび、<b class="key">タップ</b> で鳴らす。<b class="key">↑↓</b> でオクターブ切替</li>
+          <li>鍵盤の左はしの <b class="key">≡</b> をタップでメニュー（音色・おてほん曲・かんたん）</li>
+          <li><b class="gold">おてほん</b>: 次にひく鍵が<b class="gold">金色</b>に光る。正しくひくと次へ（ちがう鍵も音は鳴り、ミスとして数える）</li>
+          <li><b class="key">かんたん ON</b>: カーソルが次の鍵へ自動でジャンプ。タップだけで1曲ひける</li>
+          <li>音色は ピアノ風／オルゴール／オルガン。音は端末内で合成し、最初のタップで音が出るようになります</li>
+        </ul>
+        <div class="menu-list" id="howto-list"></div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
